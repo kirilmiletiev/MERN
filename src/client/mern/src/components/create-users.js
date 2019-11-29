@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 // import DatePicker from 'react-datepicker';
 // import "react-datepicker/dist/react-datepicker.css";
 
@@ -29,8 +30,9 @@ export default class CreateUser extends Component {
 
         console.log(user);
 
-        // axios.post('http://localhost:5000/items/add', item)
-        //   .then(res => console.log(res.data));
+        axios.post('http://localhost:5000/users/add', user)
+            .then(res => console.log(res.data));
+
         this.setState({
             username: ''
         })
