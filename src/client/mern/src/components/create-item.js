@@ -77,7 +77,7 @@ export default class CreateItem extends Component {
     axios.post('http://localhost:5000/items/add', item)
       .then(res => console.log(res.data));
 
-  //  window.location = '/';
+    window.location = '/';
   }
 
   render() {

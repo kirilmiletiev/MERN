@@ -35,11 +35,15 @@ export default class ItemsList extends Component {
 
     deleteItem(id) {
         axios.delete('http://localhost:5000/items/' + id)
-            .then(response => { console.log(response.data) });
+            .then(response => { console.log(response.data) })
+            .catch((err) => {
+                console.log(err);
+            });
 
         this.setState({
             items: this.state.items.filter(item => item._id !== id)
         })
+        window.location = '/';
     }
 
     itemList() {
