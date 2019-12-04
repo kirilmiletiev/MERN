@@ -8,21 +8,16 @@ const userSchema = new Schema({
         required: true,
         unique: true,
         minlength: [3, 'Username should be at least 3 characters!'],
-        validate: {
-            validator: (value) => /^[a-zA-Z0-9]+$/.test(value),
-            message: 'Username should consist only with English letters and digits!'
-        }
+        validate: { validator: (value) => /^[a-zA-Z0-9]+$/.test(value), message: 'Username should consist only with English letters and digits!' }
     },
     password: {
         type: String,
         required: true,
         minlength: [3, 'Password should be at least 3 characters!'],
-        validate: {
-            validator: (value) => /^[a-zA-Z0-9]+$/.test(value),
-            message: 'Password should consist only with English letters and digits!'
-        },
+        validate: { validator: (value) => /^[a-zA-Z0-9]+$/.test(value), message: 'Password should consist only with English letters and digits!' },
     },
-    
+    timeOfCreationInBG: { type: Date, default: Date.now() },
+
     // expenses:[{
     //     type: Schema.Types.ObjectId,
     //     ref: 'Expense'
@@ -31,7 +26,7 @@ const userSchema = new Schema({
     //     type: Schema.Types.ObjectId,
     //     ref: 'Course'
     // }]
-});
+}, { timestamps: true, });
 
 
 // userSchema.methods = {

@@ -13,10 +13,9 @@ const itemSchema = new Schema({
     description: { type: String, required: true },
     duration: { type: Number, required: true },
     date: { type: Date, required: true },
-    isSomeCond: { type: Boolean }
-}, {
-    timestamps: true,
-});
+    isSomeCond: { type: Boolean },
+    timeOfCreationInBG: { type: Date, default: Date.now(), required: true },
+}, { timestamps: true, });
 
 const Item = mongoose.model('Item', itemSchema);
 
