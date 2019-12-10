@@ -32,9 +32,6 @@ export default class CreateItem extends Component {
           })
         }
       })
-      .catch((error) => {
-        console.log(error);
-      })
   }
 
 
@@ -74,9 +71,7 @@ export default class CreateItem extends Component {
 
     console.log(item);
 
-    axios.post('http://localhost:5000/items/add', item)
-      .then(res => console.log(res.data));
-
+    axios.post('http://localhost:5000/items/add', item);
     window.location = '/';
   }
 
