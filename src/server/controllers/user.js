@@ -4,7 +4,7 @@ const utils = require('../utils');
 
 module.exports = {
     get: (req, res, next) => {
-        models.User.find()
+        models.user.find()
             .then((users) => res.send(users))
             .catch(next)
     },
@@ -12,14 +12,20 @@ module.exports = {
     post: {
         register: (req, res, next) => {
             const { username, password } = req.body;
-            models.User.create({ username, password })
-                .then((createdUser) => res.send(createdUser))
+            
+            models.user.create({ username, password })
+                .then((createdUser) => {
+                    
+                    const token = utils.jwt.createToken({ id: createdUser._id });
+                    res.cookie(config.authCookieName, token).send(createdUser);
+                    
+                })
                 .catch(next)
         },
 
         login: (req, res, next) => {
             const { username, password } = req.body;
-            models.User.findOne({ username })
+            models.user.findOne({ username })
                 .then((user) => Promise.all([user, user.matchPassword(password)]))
                 .then(([user, match]) => {
                     if (!match) {
@@ -49,14 +55,14 @@ module.exports = {
     put: (req, res, next) => {
         const id = req.params.id;
         const { username, password } = req.body;
-        models.User.update({ _id: id }, { username, password })
+        models.user.update({ _id: id }, { username, password })
             .then((updatedUser) => res.send(updatedUser))
             .catch(next)
     },
 
     delete: (req, res, next) => {
         const id = req.params.id;
-        models.User.deleteOne({ _id: id })
+        models.user.deleteOne({ _id: id })
             .then((removedUser) => res.send(removedUser))
             .catch(next)
     }

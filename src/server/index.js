@@ -9,12 +9,12 @@ dbConnection().then(() => {
 
     require('./config/routes')(app);
 
-    app.use(function (err, req, res, next) {
-        console.error(err);
-        res.status(500).send(err.message);
-        console.log(err)
-        //console.log('*'.repeat(90))
-    });
+    // app.use(function (err, req, res, next) {
+    //     console.error(err);
+    //     res.status(500).send(err.message);
+    //     console.log(err)
+    //     //console.log('*'.repeat(90))
+    // });
 
     app.listen(port, console.log(`Listening on port ${port}!`))
 
