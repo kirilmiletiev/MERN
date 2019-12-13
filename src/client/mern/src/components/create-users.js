@@ -38,11 +38,18 @@ export default class CreateUser extends Component {
 
         console.log(user);
         //axios.post('http://localhost:5000/users/add', user);
+
+        localStorage.setItem('user', this.state.username);
         axios.post('http://localhost:5000/users/register', user);
         this.setState({
             username: '',
             password: ''
-        })
+        });
+        window.location = '/';
+    }
+
+    componentDidMount(s) {
+        console.log('test');
     }
 
     render() {
@@ -62,8 +69,8 @@ export default class CreateUser extends Component {
                         </div>
                         <div>
                             <label>Password: </label>
-                            <input type="password" 
-                               autoComplete="on"
+                            <input type="password"
+                                autoComplete="on"
                                 required
                                 className="form-control"
                                 value={this.state.password}

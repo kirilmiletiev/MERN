@@ -1,7 +1,7 @@
 const models = require('../models');
 const config = require('../config/config');
 const utils = require('../utils');
-
+const { User } = require('../models');
 module.exports = {
     get: (req, res, next) => {
         models.user.find()
@@ -12,13 +12,15 @@ module.exports = {
     post: {
         register: (req, res, next) => {
             const { username, password } = req.body;
-            
+
             models.user.create({ username, password })
                 .then((createdUser) => {
-                    
+                    // console.log('User added!')
                     const token = utils.jwt.createToken({ id: createdUser._id });
                     res.cookie(config.authCookieName, token).send(createdUser);
-                    
+                    console.log('User added!');
+                    console.log(token);
+                    // res.redirect('/');
                 })
                 .catch(next)
         },
@@ -41,14 +43,12 @@ module.exports = {
 
         logout: (req, res, next) => {
             const token = req.cookies[config.authCookieName];
-            console.log('-'.repeat(100));
             console.log(token);
-            console.log('-'.repeat(100));
-            models.TokenBlacklist.create({ token })
-                .then(() => {
+            // models.TokenList.create({ token })
+            //     .then(() => {
                     res.clearCookie(config.authCookieName).send('Logout successfully!');
-                })
-                .catch(next);
+                // })
+                // .catch(next);
         }
     },
 

@@ -19,7 +19,7 @@ function App() {
         <Route path="/" exact component={ItemsList} />
         <Route path="/edit/:id" component={EditItem} />
         <Route path="/create" component={CreateItem} />
-        <Route path="/user" component={CreateUser} />
+        <Route path="/users" component={CreateUser} />
       </div>
     </Router>
   );
