@@ -3,23 +3,29 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
-
-import Navbar from "./components/navbar";
 import ItemsList from "./components/items-list";
 import EditItem from "./components/edit-items";
 import CreateItem from "./components/create-item";
-import CreateUser from "./components/create-users";
+//import CreateUser from "./components/create-users";
+//import Logout from "./components/logout";
+
+import Register from "./components/User/Register"
+import Logout from '../../mern/src/components/User/Logout';
+import Login from './components/User/Login';
+import Navigation from './components/Navigation'
 
 function App() {
   return (
     <Router>
       <div className="container">
-        <Navbar />
+        <Navigation component={Navigation} />
         <br />
         <Route path="/" exact component={ItemsList} />
         <Route path="/edit/:id" component={EditItem} />
-        <Route path="/create" component={CreateItem} />
-        <Route path="/users" component={CreateUser} />
+        <Route path="/add-item" component={CreateItem} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/logout" component={(Logout)} />
+        <Route exact path="/login" component={(Login)} />
       </div>
     </Router>
   );

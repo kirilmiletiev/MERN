@@ -16,8 +16,33 @@ const userSchema = new Schema({
         minlength: [3, 'Password should be at least 3 characters!'],
         validate: { validator: (value) => /^[a-zA-Z0-9]+$/.test(value), message: 'Password should consist only with English letters and digits!' },
     },
-    timeOfCreationInBG: { type: Date, default: Date.now() },
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number,
+        required: true
+    },
+    gender: {
+        type: String,
+        enum: ['Male', 'Female'],
+        required: true
+    },
+    // timeOfCreationInBG: { type: Date, default: Date.now() },
 
+    items: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }]
     // expenses:[{
     //     type: Schema.Types.ObjectId,
     //     ref: 'Expense'

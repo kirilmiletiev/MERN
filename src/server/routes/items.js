@@ -46,11 +46,9 @@ router.route('/update/:id').post((req, res) => {
             item.description = req.body.description;
             item.duration = Number(req.body.duration);
             item.date = Date.parse(req.body.date);
-
             item.save()
                 .then(() => res.json('Item updated.'))
                 .catch(err => res.status(400).json('Error: ' + err));
-
         })
         .catch(err => res.status(400).json('Error: ' + err));
 });
