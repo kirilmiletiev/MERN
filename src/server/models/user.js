@@ -8,21 +8,25 @@ const userSchema = new Schema({
         required: true,
         unique: true,
         minlength: [3, 'Username should be at least 3 characters!'],
-        validate: { validator: (value) => /^[a-zA-Z0-9]+$/.test(value), message: 'Username should consist only with English letters and digits!' }
+        validate: { validator: (value) => /^[a-zA-Z0-9]{3,}$/.test(value), message: 'Username should consist only English letters and digits!' }
     },
     password: {
         type: String,
         required: true,
         minlength: [3, 'Password should be at least 3 characters!'],
-        validate: { validator: (value) => /^[a-zA-Z0-9]+$/.test(value), message: 'Password should consist only with English letters and digits!' },
+        validate: { validator: (value) => /^[a-zA-Z0-9]{3,}$/.test(value), message: 'Password should consist only English letters and digits!' },
     },
     firstName: {
         type: String,
-        required: true
+        required: true,
+        minlength: [3, 'First name should be at least 3 characters!'],
+        validate: { validator: (value) => /^[a-zA-Z0-9]{3,}$/.test(value), message: 'First name consist only English letters and digits!' },
     },
     lastName: {
         type: String,
-        required: true
+        required: true,
+        minlength: [3, 'Last name should be at least 3 characters!'],
+        validate: { validator: (value) => /^[a-zA-Z0-9]{3,}$/.test(value), message: 'Last name consist only English letters and digits!' },
     },
     email: {
         type: String,
@@ -30,7 +34,8 @@ const userSchema = new Schema({
     },
     age: {
         type: Number,
-        required: true
+        required: true,
+        min: [0, 'Age must be a positive number']
     },
     gender: {
         type: String,
