@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import userService from '../UserService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import constants from '../Constants';
 
 class Login extends React.Component {
@@ -16,13 +18,12 @@ class Login extends React.Component {
     submitHandler = (event) => {
         event.preventDefault();
         const data = this.state;
+        console.log(data);
+
         userService.login(data).then(res => {
-            if (res === constants.INVALID_USERNAME_PASSWORD) {
-                this.setState({ errors: res });
-            } else {
-                window.location = ('/');
-            }
-        });
+            toast.success('Logged in successfully...');
+            window.location = ('/');
+        }).catch(err => toast.error('Incorrect USERNAME or PASSWORD...'));
     };
 
     changeHandler = (event) => {
@@ -34,6 +35,7 @@ class Login extends React.Component {
     render() {
         const { errors } = this.state;
         return (
+
             <div className="container" style={{ marginTop: 30, marginBottom: 50 }}>
                 <div className="card bg-light">
                     <article className="card-body mx-auto">

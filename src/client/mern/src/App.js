@@ -8,7 +8,7 @@ import EditItem from "./components/edit-items";
 import CreateItem from "./components/create-item";
 //import CreateUser from "./components/create-users";
 //import Logout from "./components/logout";
-
+import { ToastContainer } from 'react-toastify';
 import Register from "./components/User/Register"
 import Logout from '../../mern/src/components/User/Logout';
 import Login from './components/User/Login';
@@ -27,6 +27,17 @@ function App() {
         <Route exact path="/logout" component={(Logout)} />
         <Route exact path="/login" component={(Login)} />
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable
+        pauseOnHover
+      />
     </Router>
   );
 };
