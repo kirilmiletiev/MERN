@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import auth from '../auth'
@@ -10,12 +10,22 @@ const Item = props => (
         <td>{props.item.description}</td>
         <td>{props.item.duration}</td>
         <td>{props.item.date.substring(0, 10)}</td>
-        <td>
-            <Link to={"/edit/" + props.item._id}> edit </Link>
-            | <Link to={"/items"} method="delete" onClick={() => { props.deleteItem(props.item._id) }}> delete </Link>
-            | <Link to={'/subscribe'} method="put" onClick={() => { props.subscribeItem(props.item._id, auth.getUserInfo().id) }}> subscribe </Link>
+        {
+            auth.getUserInfo() ?
+                <Fragment>
+                    <td>
+                        <Link to={"/edit/" + props.item._id}> edit </Link>
+                        | <Link to={"/items"} method="delete" onClick={() => { props.deleteItem(props.item._id) }}> delete </Link>
+                        | <Link to={'/subscribe'} method="put" onClick={() => { props.subscribeItem(props.item._id, auth.getUserInfo().id) }}> subscribe </Link>
 
-        </td>
+                    </td>
+                </Fragment>
+                :
+                <Fragment>
+                <Link to="/"> home </Link>
+                </Fragment>
+        }
+
     </tr>
 )
 
@@ -27,9 +37,9 @@ export default class ItemsList extends Component {
         this.subscribeItem = this.subscribeItem.bind(this);
 
         this.state = {
-             items: [],
-             userId: auth.getUserInfo().id
-             };
+            items: [],
+            userId: ''
+        };
 
     }
 
@@ -48,7 +58,7 @@ export default class ItemsList extends Component {
             method: 'put',
             url: 'http://localhost:5000/items/subscribe/' + itemId,
             data: {
-                itemId , userId
+                itemId, userId
             }
         }).then(res => res.data);
     }
