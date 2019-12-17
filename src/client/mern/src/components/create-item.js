@@ -10,7 +10,12 @@ export default class CreateItem extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDuration = this.onChangeDuration.bind(this);
+    this.onChangePrice = this.onChangePrice.bind(this);
+    this.onChangeLocation = this.onChangeLocation.bind(this);
+    this.onChangeUrl = this.onChangeUrl.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
+    this.onChangeCategory = this.onChangeCategory.bind(this);
+
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -18,7 +23,11 @@ export default class CreateItem extends Component {
       description: '',
       duration: 0,
       date: new Date(),
-      users: []
+      users: [],
+      price: 0,
+      location: '',
+      url: '',
+      category: '',
     }
   }
 
@@ -53,9 +62,33 @@ export default class CreateItem extends Component {
     })
   }
 
-  onChangeDate(date) {
+  onChangeDate(e) {
     this.setState({
-      date: date
+      date: e
+    })
+  }
+
+  onChangePrice(e) {
+    this.setState({
+      price: e.target.value
+    })
+  }
+
+  onChangeLocation(e) {
+    this.setState({
+      location: e.target.value
+    })
+  }
+
+  onChangeUrl(e) {
+    this.setState({
+      url: e.target.value
+    })
+  }
+
+  onChangeCategory(e) {
+    this.setState({
+      category: e.target.value
     })
   }
 
@@ -66,12 +99,18 @@ export default class CreateItem extends Component {
       username: this.state.username,
       description: this.state.description,
       duration: this.state.duration,
-      date: this.state.date
+      date: this.state.date,
+      price: this.state.price,
+      location: this.state.location,
+      url: this.state.url,
+      //users: this.state.users,
+      category: this.state.category
+
     }
 
     console.log(item);
 
-    axios.post('http://localhost:5000/items/add', item);
+    axios.post('http://localhost:5000/items/add', item).then(res => res.data);
     window.location = '/';
   }
 
@@ -116,6 +155,29 @@ export default class CreateItem extends Component {
             />
           </div>
           <div className="form-group">
+            <label>Price</label>
+            <input type="text" className="form-control" value={this.state.price} onChange={this.onChangePrice} />
+          </div>
+          <div className="form-group">
+            <label>Location</label>
+            <input type="text" className="form-control" value={this.state.location} onChange={this.onChangeLocation} />
+          </div>
+          <div className="form-group">
+            <label>Image Url</label>
+            <input type="text" className="form-control" value={this.state.url} onChange={this.onChangeUrl} />
+          </div>
+          <div className="form-group">
+            <select onChange={this.onChangeCategory}>
+              <option defaultValue='1'> Select category</option>
+              <option>Music</option>
+              <option>Culture</option>
+              <option>Sport</option>
+              <option>Kids</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div className="form-group">
             <label>Date: </label>
             <div>
               <DatePicker
@@ -124,7 +186,6 @@ export default class CreateItem extends Component {
               />
             </div>
           </div>
-
           <div className="form-group">
             <input type="submit" value="Create Item (demo)" className="btn btn-primary" />
           </div>

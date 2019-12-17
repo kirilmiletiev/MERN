@@ -17,11 +17,6 @@ module.exports = {
 
             userModel.create({ username, password, firstName, lastName, email, age, gender })
                 .then((u) => {
-                    // const token = utils.jwt.createToken({ id: createdUser._id });
-                    // res.cookie(config.authCookieName, token).send(createdUser);
-                    // console.log('User added!');
-                    //  console.log(token);
-                    // res.redirect('/');
                     res.send(u)
                 })
                 .catch(next)
@@ -44,8 +39,6 @@ module.exports = {
         },
 
         logout: (req, res, next) => {
-            // const token = req.cookies[config.authCookieName];
-            //localStorage.removeItem('username');
             res.clearCookie(config.authCookieName).send('Logout successfully!');
         }
     },

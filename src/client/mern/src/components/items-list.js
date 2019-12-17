@@ -9,7 +9,9 @@ const Item = props => (
         <td>{props.item.duration}</td>
         <td>{props.item.date.substring(0, 10)}</td>
         <td>
-            <Link to={"/edit/" + props.item._id}>edit</Link> | <Link to={"/items"} method="delete" onClick={() => { props.deleteItem(props.item._id) }}>delete</Link>
+            <Link to={"/edit/" + props.item._id}>edit</Link>
+             |<Link to={"/items"} method="delete" onClick={() => { props.deleteItem(props.item._id) }}>delete</Link>
+             |<Link to='/subscribe' ></Link>
         </td>
     </tr>
 )
@@ -21,6 +23,7 @@ export default class ItemsList extends Component {
         this.deleteItem = this.deleteItem.bind(this)
 
         this.state = { items: [] };
+        
     }
 
     componentDidMount() {

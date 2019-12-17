@@ -1,6 +1,14 @@
 import axios from 'axios';
 
 const userService = {
+    subscribe: function (data) {
+        const { userId, itemId } = data;
+        return axios({
+            method: 'PUT',
+            url: 'http://localhost:5000/subscribe',
+            data: { userId, itemId }
+        }).then(res => res.data);
+    },
     register: function (data) {
         const { username, password, firstName, lastName, email, age, gender } = data;
         return axios({
