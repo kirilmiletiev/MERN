@@ -7,22 +7,23 @@ import userService from '../../User/UserService'
 class Subscribe extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            userId: '',
-            itemId: ''
+       
+        console.log(props);
+        console.log(this.state)
         };
-    };
+   // };
 
-    componentDidMount() {
-        userService.subscribe(() => {
-            this.setState({ userId: {}, itemId: {} });
-        });
-    };
+    // componentDidMount() {
+    //     userService.subscribe(() => {
+    //         this.setState({ userId: {}, itemId: {} });
+    //     });
+    // };
 
     render() {
         return (
             // this.state.isRedirect && <Redirect to="/" />
-            window.location = '/'
+           // window.location = '/'
+           window.onbeforeunload
         );
     };
 };

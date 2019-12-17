@@ -14,6 +14,7 @@ export default class EditItems extends Component {
         this.onChangeLocation = this.onChangeLocation.bind(this);
         this.onChangeUrl = this.onChangeUrl.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
+        this.onChangeCategory = this.onChangeCategory.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this);
 
@@ -26,6 +27,7 @@ export default class EditItems extends Component {
             price: 0,
             location: '',
             url: '',
+            category: '',
         }
     }
 
@@ -117,7 +119,8 @@ export default class EditItems extends Component {
             price: this.state.price,
             location: this.state.location,
             url: this.state.url,
-            users: this.state.users
+            users: this.state.users,
+            category: this.state.category
         }
 
         console.log(item);
@@ -180,6 +183,17 @@ export default class EditItems extends Component {
                         <label>Image Url</label>
                         <input type="text" className="form-control" value={this.state.url} onChange={this.onChangeUrl} />
                     </div>
+                    <div className="form-group">
+                        <select onChange={this.onChangeCategory}>
+                            <option defaultValue='1'> Select category</option>
+                            <option>Music</option>
+                            <option>Culture</option>
+                            <option>Sport</option>
+                            <option>Kids</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
                     <div className="form-group">
                         <label>Date: </label>
                         <div>

@@ -31,7 +31,8 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/logout" component={(Logout)} />
         <Route exact path="/login" component={(Login)} />
-        <Route exact path="/subscribe" component={(Subscribe)} />
+        <PrivateRoute exact path="/subscribe/:id" authStatus={isLogged !== undefined} redirectURL='/login' component={Subscribe}/>
+        {/* <Route exact path="/subscribe"  component={(Subscribe)} /> */}
       </div>
       <ToastContainer
         position="top-center"
