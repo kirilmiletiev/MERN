@@ -15,7 +15,7 @@ const Item = props => (
                 <Fragment>
                     <td>
                         {((props.item.username === userInfo.username) ?
-                            [<Link to={"/edit/" + props.item._id}> edit </Link>, <Link to={"/items"} method="delete" onClick={() => { props.deleteItem(props.item._id) }}> delete </Link>]
+                            [<Link to={"/edit/" + props.item._id} key={ props.item._id}> edit </Link>, <Link to={"/items"} method="delete" key={ props.item.username}  onClick={() => { props.deleteItem(props.item._id) }}> delete </Link>]
 
                             : <Link to={'/subscribe'} method="put" onClick={() => { props.subscribeItem(props.item._id, userInfo.id) }}> subscribe </Link>)}
                     </td>
