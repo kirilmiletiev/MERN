@@ -3,13 +3,18 @@ const itemModel = require('../models/item');
 const userModel = require('../models/user');
 
 
-
 router.route('/subscribe/:id').put((req, res, next) => {
     const { itemId, userId } = req.body;
-  //  console.log(req.params)
-  //  console.log(req.body)
-    itemModel.updateOne({ _id: itemId }, { $push: { subscribers: userId } }).
-        then(props => {
+
+    //  console.log(req.params)
+    // console.log(req.body)
+
+    // let currentUser = userModel.findOne({ _id: userId });
+    // console.log(currentUser.then(x=> console.log(x.items)));
+    // // console.log(currentUser);
+
+    itemModel.updateOne({ _id: itemId }, { $push: { subscribers: userId } })
+        .then(props => {
             userModel.updateOne({ _id: userId }, { $push: { items: itemId } })
                 .then(() => res.send(props));
         }).catch(next)
@@ -33,7 +38,7 @@ router.route('/add').post((req, res) => {
     const users = req.body.users;
     const category = req.body.category;
 
-    const newItem =  new itemModel({
+    const newItem = new itemModel({
         username,
         description,
         duration,
@@ -41,7 +46,7 @@ router.route('/add').post((req, res) => {
         price,
         location,
         url,
-     //   users,
+        //   users,
         category
     });
     console.log(newItem)
@@ -50,7 +55,7 @@ router.route('/add').post((req, res) => {
         .then(() => {
             res.json('Item added!');
         })
-        .catch(err => res.status(400).json('Error: ' + err + '----' + console.log( newItem) ));
+        .catch(err => res.status(400).json('Error: ' + err + '----' + console.log(newItem)));
 });
 
 router.route('/:id').get((req, res) => {

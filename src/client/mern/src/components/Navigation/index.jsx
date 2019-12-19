@@ -37,7 +37,7 @@ class Navigation extends React.Component {
                             :
                             <Fragment>
                                 <li className="navbar-item">
-                                    <Link to="/" className="nav-link">My Profile</Link>
+                                    <Link to="/" className="nav-link">Hello {authService.getUserInfo().username}</Link>
                                 </li>
                                 <li className="navbar-item">
                                     <Link to="/add-item" className="nav-link">Add Item</Link>
