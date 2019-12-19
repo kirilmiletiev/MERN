@@ -7,7 +7,7 @@ const userModel = require('../models/user');
 router.route('/subscribe/:id').put((req, res, next) => {
     const { itemId, userId } = req.body;
   //  console.log(req.params)
-    console.log(req.body)
+  //  console.log(req.body)
     itemModel.updateOne({ _id: itemId }, { $push: { subscribers: userId } }).
         then(props => {
             userModel.updateOne({ _id: userId }, { $push: { items: itemId } })

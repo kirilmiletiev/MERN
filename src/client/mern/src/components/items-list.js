@@ -11,20 +11,23 @@ const Item = props => (
         <td>{props.item.duration}</td>
         <td>{props.item.date.substring(0, 10)}</td>
         {
-            auth.getUserInfo() ?
+            userInfo ?
                 <Fragment>
                     <td>
                         <Link to={"/edit/" + props.item._id}> edit </Link>
                         | <Link to={"/items"} method="delete" onClick={() => { props.deleteItem(props.item._id) }}> delete </Link>
-                        | <Link to={'/subscribe'} method="put" onClick={() => { props.subscribeItem(props.item._id, auth.getUserInfo().id) }}> subscribe </Link>
+                        | <Link to={'/subscribe'} method="put" onClick={() => { props.subscribeItem(props.item._id, userInfo.id) }}> subscribe </Link>
 
                     </td>
                 </Fragment>
                 :
                 <Fragment>
-                <Link to="/"> home </Link>
+                    <Link to="/"> home </Link>
                 </Fragment>
         }
+        <td>
+            {((props.item.subscribers))}
+        </td>
 
     </tr>
 )
@@ -107,6 +110,7 @@ export default class ItemsList extends Component {
                             <th>Duration</th>
                             <th>Date</th>
                             <th>Actions</th>
+                            <th>Subscribers</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -22,8 +22,8 @@ class Subscribe extends React.Component {
     render() {
         return (
             // this.state.isRedirect && <Redirect to="/" />
-           // window.location = '/'
-           window.onbeforeunload
+            window.location = '/'
+         //  window.onbeforeunload
         );
     };
 };
