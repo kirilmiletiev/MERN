@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import auth from '../../auth'
 
 const userInfo = auth.getUserInfo();
@@ -82,7 +82,7 @@ export default class ItemsList extends Component {
         this.setState({
             items: this.state.items.filter(item => item._id !== id)
         })
-        // window.location = '/';
+         window.location = '/';
         return;
     }
 
@@ -90,6 +90,16 @@ export default class ItemsList extends Component {
         return this.state.items.map(currenItem => {
             return <Item item={currenItem} deleteItem={this.deleteItem} subscribeItem={this.subscribeItem} key={currenItem._id} />;
         })
+    }
+
+    details(id){
+        axios.get('http://localhost:5000/items/details/' + id)
+            .then(response => { console.log(response.data) })
+            .catch((err) => {
+                console.log(err);
+            });
+           return <Redirect to={"/details/" + id}/>
+           // window.location('/details/' + id);
     }
 
     render() {
@@ -127,9 +137,9 @@ export default class ItemsList extends Component {
                                                     <Fragment>
                                                         <div>
                                                             {((e.username === userInfo.username) ?
-                                                                [<Link to={"/edit/" + e._id} key={e._id}> edit </Link>, <Link to={"/items"} method="delete" key={e.username} onClick={() => { this.deleteItem(e._id) }}> delete </Link>]
-
-                                                                : <Link to={'/subscribe'} method="put" onClick={() => { this.subscribeItem(e._id, userInfo.id) }}> subscribe </Link>)}
+                                                                [<Link to={"/edit/" + e._id} key={e._id}>  Edit  </Link>, <Link to={"/items"} method="delete" key={e.username} onClick={() => { this.deleteItem(e._id) }}>  Delete  </Link>]
+                                                                : [<Link to={'/subscribe'} method="put" onClick={() => { this.subscribeItem(e._id, userInfo.id) }}>  SUBSCRIBE  </Link>,
+                                                                <Link to={"/details/" + e._id} key={e._id} onClick={()=>{this.details(e._id)}} >  Details  </Link>])}
                                                         </div>
                                                     </Fragment>
                                                     :

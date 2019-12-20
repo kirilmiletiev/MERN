@@ -18,8 +18,9 @@ import Navigation from './components/Navigation';
 import PrivateRoute from 'react-router-private';
 import Subscribe from './components/Item/Subscribe';
 import Profile from './components/User/Profil';
-import auth from './auth'
-import Home from './components/Home'
+import auth from './auth';
+import Home from './components/Home';
+import Details from './components/Item/Details';
 function App() {
   let isLogged = auth.getUserInfo();
   console.log(isLogged)
@@ -30,6 +31,7 @@ function App() {
         <br />
         <Route path="/" exact component={Home} />
         <Route path="/edit/:id" component={EditItem} />
+        <Route path="/details/:id" component={Details} />
         {/* <Route path="/add-item" component={CreateItem} /> */}
         <PrivateRoute path="/add-item" exact component={CreateItem} authStatus={(isLogged !== undefined)} redirectURL="/login" />
         <Route exact path="/register" component={Register} />

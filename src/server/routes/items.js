@@ -2,6 +2,11 @@ const router = require('express').Router();
 const itemModel = require('../models/item');
 const userModel = require('../models/user');
 
+router.route('details/:id').get((req, res, next)=>{
+    const {id} = req.body;
+    itemModel.find(x=> x._id ===id)
+    .then(x=> res.send(x)).catch(next);
+});
 
 router.route('/subscribe/:id').put((req, res, next) => {
     const { itemId, userId } = req.body;
