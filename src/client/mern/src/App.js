@@ -1,9 +1,11 @@
 import React from 'react';
 // import logo from './logo.svg';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import ItemsList from "./components/items-list";
+import Item from './components/Home'
 import EditItem from "./components/edit-items";
 import CreateItem from "./components/create-item";
 //import CreateUser from "./components/create-users";
@@ -17,6 +19,7 @@ import PrivateRoute from 'react-router-private';
 import Subscribe from './components/Item/Subscribe';
 import Profile from './components/User/Profil';
 import auth from './auth'
+import Home from './components/Home'
 function App() {
   let isLogged = auth.getUserInfo();
   console.log(isLogged)
@@ -25,7 +28,7 @@ function App() {
       <div className="container">
         <Navigation component={Navigation} />
         <br />
-        <Route path="/" exact component={ItemsList} />
+        <Route path="/" exact component={Home} />
         <Route path="/edit/:id" component={EditItem} />
         {/* <Route path="/add-item" component={CreateItem} /> */}
         <PrivateRoute path="/add-item" exact component={CreateItem} authStatus={(isLogged !== undefined)} redirectURL="/login" />

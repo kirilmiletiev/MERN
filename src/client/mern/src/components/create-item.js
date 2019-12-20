@@ -20,7 +20,7 @@ export default class CreateItem extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      //username: '',
+      username: '',
       description: '',
       duration: 0,
       date: new Date(),
@@ -37,8 +37,7 @@ export default class CreateItem extends Component {
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
-            users: response.data.map(user => user.username),
-            username: response.data[0].username
+            users: response.data.map(user => user.username)
           })
         }
       })

@@ -28,6 +28,8 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
+
+    console.log(`body: => ${req.body}`)
     const username = req.body.username;
     const description = req.body.description;
     const duration = (req.body.duration);
