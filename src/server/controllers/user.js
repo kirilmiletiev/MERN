@@ -9,7 +9,15 @@ module.exports = {
             userModel.find()
                 .then((users) => res.send(users))
                 .catch(next)
-        }
+        },
+        getUser: (req, res, next) => {
+            const userId = req.params.id;
+            userModel.findById(userId)
+                .then(user => {
+                    res.send(user);
+                })
+                .catch(next);
+        },
     },
     post: {
         register: (req, res, next) => {

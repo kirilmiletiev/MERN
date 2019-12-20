@@ -6,6 +6,7 @@ import authService from '../../auth/index';
 class Navigation extends React.Component {
     constructor(props) {
         super(props);
+        this.state = { isLogged: "" }
         this.render.bind(this);
     }
     componentDidMount = () => {
@@ -37,7 +38,7 @@ class Navigation extends React.Component {
                             :
                             <Fragment>
                                 <li className="navbar-item">
-                                    <Link to="/" className="nav-link">Hello {authService.getUserInfo().username}</Link>
+                                    <Link to="/profile" className="nav-link">Hello {authService.getUserInfo().username}</Link>
                                 </li>
                                 <li className="navbar-item">
                                     <Link to="/add-item" className="nav-link">Add Item</Link>
@@ -50,7 +51,6 @@ class Navigation extends React.Component {
                                 </li>
                             </Fragment>
                         }
-
                     </ul>
                 </div>
             </nav>

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import userService from '../UserService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import constants from '../Constants';
 
 class Login extends React.Component {
     constructor(props) {

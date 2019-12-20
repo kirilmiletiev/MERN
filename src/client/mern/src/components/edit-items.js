@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import auth from '../auth';
 
 export default class EditItems extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeUsername = this.onChangeUsername.bind(this);
+        // this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
@@ -19,7 +20,7 @@ export default class EditItems extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            username: '',
+           // username: '',
             description: '',
             duration: 0,
             date: new Date(),
@@ -35,7 +36,7 @@ export default class EditItems extends Component {
         axios.get('http://localhost:5000/items/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
-                    username: response.data.username,
+                 //   username: response.data.username,
                     description: response.data.description,
                     duration: response.data.duration,
                     date: new Date(response.data.date),
@@ -49,23 +50,23 @@ export default class EditItems extends Component {
                 console.log(error);
             })
 
-        axios.get('http://localhost:5000/users/')
-            .then(response => {
-                if (response.data.length > 0) {
-                    this.setState({
-                        users: response.data.map(user => user.username),
-                    })
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        // axios.get('http://localhost:5000/users/')
+        //     .then(response => {
+        //         if (response.data.length > 0) {
+        //             this.setState({
+        //                 users: response.data.map(user => user.username),
+        //             })
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     })
 
     }
 
-    onChangeUsername(e) {
-        this.setState({ username: e.target.value })
-    }
+    // onChangeUsername(e) {
+    //     this.setState({ username: e.target.value })
+    // }
 
     onChangeDescription(e) {
         this.setState({ description: e.target.value })
@@ -112,7 +113,7 @@ export default class EditItems extends Component {
         e.preventDefault();
 
         const item = {
-            username: this.state.username,
+            username: auth.getUserInfo().username,
             description: this.state.description,
             duration: this.state.duration,
             date: this.state.date,
@@ -136,7 +137,7 @@ export default class EditItems extends Component {
             <div>
                 <h3>Create New Item (demo)</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label>Username: </label>
                         <select ref="userInput"
                             required
@@ -152,7 +153,7 @@ export default class EditItems extends Component {
                                 })
                             }
                         </select>
-                    </div>
+                    </div> */}
                     <div className="form-group">
                         <label>Description: </label>
                         <input type="text"

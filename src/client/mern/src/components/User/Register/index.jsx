@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import validationService from '../UserValidation';
 import userService from '../UserService';
-import constants from '../Constants';
+import constants from '../constants/constants';
 
 class Register extends React.Component {
     constructor(props) {
@@ -131,8 +131,6 @@ class Register extends React.Component {
                             </div>
 
                             <h4 className="card-title mt-3 text-center">Personal Info</h4>
-
-                            {/* EMAIL */}
                             <div className="row">
                                 <div className="col-md-10">
                                     <div className="form-group input-group">
@@ -142,15 +140,7 @@ class Register extends React.Component {
                                         <input id="email" type="text" className="form-control" name="email" onChange={this.changeHandler} placeholder="E-mail" />
                                     </div>
                                 </div>
-                                {/* <div className="col-md-2">
-                                    {errors.email === '' || errors.email === undefined &&
-                                        <MappleToolTip><div className="text-success"><i className="fa fa-check"></i></div><div className="text-success">E-mail is correct!</div></MappleToolTip>}
-                                    {errors.email !== '' &&
-                                        <MappleToolTip><div className="text-danger"><i className="fa fa-exclamation-triangle"></i></div><div className="text-danger">{errors.email}</div></MappleToolTip>}
-                                </div> */}
                             </div>
-
-                            {/* FIRST NAME */}
                             <div className="row">
                                 <div className="col-md-10">
                                     <div className="form-group input-group">
