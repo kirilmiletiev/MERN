@@ -23,7 +23,7 @@ import Home from './components/Home';
 import Details from './components/Item/Details';
 function App() {
   let isLogged = auth.getUserInfo();
-  console.log(isLogged)
+  //console.log(isLogged)
   return (
     <Router>
       <div className="container">
