@@ -103,7 +103,6 @@ export default class CreateItem extends Component {
       price: this.state.price,
       location: this.state.location,
       url: this.state.url,
-      //users: this.state.users,
       category: this.state.category
 
     }
